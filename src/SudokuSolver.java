@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class SudokuSolver {
 
@@ -18,11 +19,9 @@ public class SudokuSolver {
 
             for (int j = 0; j < gameboard[i].length; j++) {
                 column[j] = gameboard[j][i];
-                System.out.println(gameboard[j][i]);
             }
 
             columns[i] = column;
-            System.out.println(Arrays.toString(column));
         }
     }
 
@@ -37,6 +36,60 @@ public class SudokuSolver {
             System.out.printf("Column %d: %s\n", i + 1, Arrays.toString(columns[i]));
         }
     }
+
+    public void solveForNumber(int number) {
+        int i = 0;
+        ArrayList<ArrayList<Integer>> possiblePositions;
+
+        while (i < 2) {
+            possiblePositions = getPossiblePositions(number);
+            addNumberToBestRow(possiblePositions, number);
+            setColumns();
+            i++;
+        }
+
+        printGameboard();
+    }
+
+    public void addNumberToBestRow(ArrayList<ArrayList<Integer>> possiblePositions, int number) {
+        HashSet<Integer> uniqueRows = new HashSet<>();
+
+        for (ArrayList<Integer> position : possiblePositions) {
+            int row = position.get(0);
+            if (uniqueRows.contains(row)) {
+                uniqueRows.remove(row);
+            } else {
+                uniqueRows.add(row);
+            }
+        }
+
+        for (ArrayList<Integer> position : possiblePositions) {
+            int row = position.get(0);
+            if (!uniqueRows.contains(row)) continue;
+            int column = position.get(1);
+            gameboard[row][column] = number;
+        }
+    }
+//
+//    public void addNumberToBestColumn(ArrayList<ArrayList<Integer>> possiblePositions, int number) {
+//        HashSet<Integer> uniqueColumns = new HashSet<>();
+//
+//        for (ArrayList<Integer> position : possiblePositions) {
+//            int column = position.get(1);
+//            if (uniqueColumns.contains(column)) {
+//                uniqueColumns.remove(column);
+//            } else {
+//                uniqueColumns.add(column);
+//            }
+//        }
+//
+//        for (ArrayList<Integer> position : possiblePositions) {
+//            int column = position.get(1);
+//            if (!uniqueColumns.contains(column)) continue;
+//            int row = position.get(0);
+//            gameboard[row][column] = number;
+//        }
+//    }
 
     public ArrayList<ArrayList<Integer>> getPossiblePositions(int number) {
         ArrayList<ArrayList<Integer>> possiblePositions = new ArrayList<>();

@@ -1,11 +1,12 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        int[][] gameboard = getGameBoardFromInput();
+//        int[][] gameboard = getGameBoardFromInput();
+
+        int[][] gameboard = {{1,0,3,0},{0,4,2,1},{0,0,0,2},{0,0,4,0}};
 
         SudokuSolver sudokuSolver = new SudokuSolver(gameboard);
 
@@ -15,29 +16,13 @@ public class Main {
         sudokuSolver.printColumns();
         System.out.println();
 
-        ArrayList<ArrayList<Integer>> possiblePositions1 = sudokuSolver.getPossiblePositions(1);
-        for (ArrayList<Integer> integers : possiblePositions1) {
-            System.out.println(integers);
-        }
+        sudokuSolver.solveForNumber(1);
         System.out.println();
-
-        ArrayList<ArrayList<Integer>> possiblePositions2 = sudokuSolver.getPossiblePositions(2);
-        for (ArrayList<Integer> integers : possiblePositions2) {
-            System.out.println(integers);
-        }
+        sudokuSolver.solveForNumber(2);
         System.out.println();
-
-        ArrayList<ArrayList<Integer>> possiblePositions3 = sudokuSolver.getPossiblePositions(3);
-        for (ArrayList<Integer> integers : possiblePositions3) {
-            System.out.println(integers);
-        }
+        sudokuSolver.solveForNumber(3);
         System.out.println();
-
-        ArrayList<ArrayList<Integer>> possiblePositions4 = sudokuSolver.getPossiblePositions(4);
-        for (ArrayList<Integer> integers : possiblePositions4) {
-            System.out.println(integers);
-        }
-        System.out.println();
+        sudokuSolver.solveForNumber(4);
     }
 
     public static int[][] getGameBoardFromInput() {
