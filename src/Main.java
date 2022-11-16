@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -12,6 +13,30 @@ public class Main {
         System.out.println();
 
         sudokuSolver.printColumns();
+        System.out.println();
+
+        ArrayList<ArrayList<Integer>> possiblePositions1 = sudokuSolver.getPossiblePositions(1);
+        for (ArrayList<Integer> integers : possiblePositions1) {
+            System.out.println(integers);
+        }
+        System.out.println();
+
+        ArrayList<ArrayList<Integer>> possiblePositions2 = sudokuSolver.getPossiblePositions(2);
+        for (ArrayList<Integer> integers : possiblePositions2) {
+            System.out.println(integers);
+        }
+        System.out.println();
+
+        ArrayList<ArrayList<Integer>> possiblePositions3 = sudokuSolver.getPossiblePositions(3);
+        for (ArrayList<Integer> integers : possiblePositions3) {
+            System.out.println(integers);
+        }
+        System.out.println();
+
+        ArrayList<ArrayList<Integer>> possiblePositions4 = sudokuSolver.getPossiblePositions(4);
+        for (ArrayList<Integer> integers : possiblePositions4) {
+            System.out.println(integers);
+        }
         System.out.println();
     }
 
