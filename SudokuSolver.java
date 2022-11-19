@@ -26,7 +26,6 @@ public class SudokuSolver {
 
     public boolean solvePuzzle(int row, int col) {
         if (boardIsFull()) return true;
-        if (row == 8 && col == 8) return false;
 
         // check that position is empty
         while (gameboard[row][col] != 0) {
